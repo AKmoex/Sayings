@@ -1,9 +1,12 @@
 const express = require("express");
-
 const app = express();
 
-app.get("/", (req, res) => {
-  res.send("Hello World");
+const cors = require("cors");
+app.use(cors());
+
+app.get("/api/test", (req, res) => {
+  console.log("收到请求了");
+  res.send("你好");
 });
 
 app.listen(3000, () => {
