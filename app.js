@@ -8,9 +8,9 @@ require("./plugins/db.js")(app);
 
 const Saying = require("./models/Saying.js");
 
-app.get("/api/test", (req, res) => {
-  console.log("收到请求了");
-  res.send("你好");
+app.get("/api/list", async (req, res) => {
+  const sayings = await Saying.find();
+  res.send(sayings);
 });
 
 app.post("/api/add", async (req, res) => {

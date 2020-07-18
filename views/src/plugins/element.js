@@ -13,6 +13,8 @@ import {
   Col,
   Button,
   DatePicker,
+  Table,
+  TableColumn,
 } from "element-ui";
 Vue.use(Container);
 Vue.use(Aside);
@@ -27,3 +29,5 @@ Vue.use(Input);
 Vue.use(Col);
 Vue.use(Button);
 Vue.use(DatePicker);
+Vue.use(Table);
+Vue.use(TableColumn);
