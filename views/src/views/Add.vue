@@ -18,14 +18,15 @@ export default {
   data() {
     return {
       model: {
-        saying: "",
-      },
+        saying: ""
+      }
     };
   },
   methods: {
-    add() {
-      console.log("test");
-    },
-  },
+    async add() {
+      const res = await this.$http.post("/add", this.model);
+      console.log(res);
+    }
+  }
 };
 </script>
