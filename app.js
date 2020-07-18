@@ -14,6 +14,7 @@ app.get("/api/test", (req, res) => {
 });
 
 app.post("/api/add", async (req, res) => {
+  console.log(req.body);
   const model = await Saying.create(req.body);
   res.send(model);
   console.log(model);

@@ -8,6 +8,15 @@
         </el-col>
       </el-form-item>
       <el-form-item>
+        <el-date-picker
+          v-model="model.date"
+          type="date"
+          placeholder="选择日期"
+          format="yyyy 年 MM 月 dd 日"
+          >>
+        </el-date-picker>
+      </el-form-item>
+      <el-form-item>
         <el-button type="primary" native-type="submit">添加</el-button>
       </el-form-item>
     </el-form>
@@ -18,7 +27,8 @@ export default {
   data() {
     return {
       model: {
-        saying: ""
+        saying: "",
+        date: new Date()
       }
     };
   },
