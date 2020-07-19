@@ -15,6 +15,7 @@ import {
   DatePicker,
   Table,
   TableColumn,
+  Pagination,
 } from "element-ui";
 Vue.use(Container);
 Vue.use(Aside);
@@ -31,3 +32,4 @@ Vue.use(Button);
 Vue.use(DatePicker);
 Vue.use(Table);
 Vue.use(TableColumn);
+Vue.use(Pagination);

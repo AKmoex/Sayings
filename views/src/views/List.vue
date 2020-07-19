@@ -27,6 +27,14 @@
         </template>
       </el-table-column>
     </el-table>
+    <el-pagination
+      background
+      layout="prev, pager, next"
+      :current-page="pageData.cur_page"
+      :page-size="pageData.page_num"
+      :total="pageData.page_total"
+    >
+    </el-pagination>
   </div>
 </template>
 <script>
@@ -38,20 +46,28 @@ export default {
           date: "",
           saying: ""
         }
-      ]
+      ],
+      pageData: {
+        cur_page: 1,
+        page_num: 5
+      }
     };
   },
 
   methods: {
     async fecthSayings() {
       const res = await this.$http.get("/list");
-      console.log(res);
       this.sayings = res.data;
+      this.pageData.page_total = this.sayings.length;
     },
     dateFormatter(row, column, cellValue) {
       if (cellValue) {
         return cellValue.substring(0, 10);
       }
+    },
+    async deleteSaying(val) {
+      const res = await this.$http.delete(`/delete/${val._id}`);
+      console.log(res);
     }
   },
   created() {

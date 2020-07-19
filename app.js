@@ -14,10 +14,17 @@ app.get("/api/list", async (req, res) => {
 });
 
 app.post("/api/add", async (req, res) => {
-  console.log(req.body);
   const model = await Saying.create(req.body);
   res.send(model);
-  console.log(model);
+});
+
+app.delete("/api/delete/:id", async (req, res) => {
+  console.log(req.params.id);
+  await Saying.findByIdAndDelete(req.params.id);
+
+  res.send({
+    message: "success",
+  });
 });
 
 app.listen(3000, () => {
