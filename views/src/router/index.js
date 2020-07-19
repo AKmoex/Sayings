@@ -24,6 +24,11 @@ const routes = [
         name: "List",
         component: List,
       },
+      {
+        path: "/sayings/add/:id",
+        component: Add,
+        props: true,
+      },
     ],
   },
 ];

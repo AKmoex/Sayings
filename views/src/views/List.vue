@@ -21,7 +21,7 @@
         <template slot-scope="scope">
           <el-button
             type="primary"
-            @click="deleteSaying(scope.row)"
+            @click="$router.push('/sayings/add/' + scope.row._id)"
             size="small"
             >修改</el-button
           >
