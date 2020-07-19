@@ -1,7 +1,11 @@
 <template>
   <div>
     <h1>列表</h1>
-    <el-table :data="sayings" border style="width:100%">
+    <el-table
+      :data="sayings.slice((cur_page - 1) * page_num, cur_page * page_num)"
+      border
+      style="width:100%"
+    >
       <el-table-column
         prop="date"
         label="日期"
@@ -29,10 +33,15 @@
     </el-table>
     <el-pagination
       background
-      layout="prev, pager, next"
-      :current-page="pageData.cur_page"
-      :page-size="pageData.page_num"
-      :total="pageData.page_total"
+      hide-on-single-page
+      :total="sayings.length"
+      :page-size="page_num"
+      :current-page="cur_page"
+      :page-sizes="[5, 10, 15, 20]"
+      @current-change="handleCurrentChange"
+      @size-change="handleSizeChange"
+      layout="total,sizes,prev, pager, next"
+      style="margin-top:1.5rem"
     >
     </el-pagination>
   </div>
@@ -41,16 +50,14 @@
 export default {
   data() {
     return {
+      cur_page: 1,
+      page_num: 10,
       sayings: [
         {
           date: "",
           saying: ""
         }
-      ],
-      pageData: {
-        cur_page: 1,
-        page_num: 5
-      }
+      ]
     };
   },
 
@@ -58,19 +65,26 @@ export default {
     async fecthSayings() {
       const res = await this.$http.get("/list");
       this.sayings = res.data;
-      this.pageData.page_total = this.sayings.length;
+    },
+
+    async deleteSaying(val) {
+      const res = await this.$http.delete(`/delete/${val._id}`);
+      console.log(res);
+    },
+    handleCurrentChange(page) {
+      this.cur_page = page;
+    },
+
+    handleSizeChange(size) {
+      this.page_num = size;
     },
     dateFormatter(row, column, cellValue) {
       if (cellValue) {
         return cellValue.substring(0, 10);
       }
-    },
-    async deleteSaying(val) {
-      const res = await this.$http.delete(`/delete/${val._id}`);
-      console.log(res);
     }
   },
-  created() {
+  mounted() {
     this.fecthSayings();
   }
 };
