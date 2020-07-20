@@ -35,6 +35,11 @@ export default {
     async login() {
       const res = await this.$http.post("/login", this.user);
       sessionStorage.token = res.data;
+      this.$message({
+        type: "success",
+        message: "登陆成功"
+      });
+      this.$router.push("/admin");
     }
   }
 };

@@ -13,6 +13,7 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
+    meta: { isPublic: true },
   },
   {
     path: "/admin",
@@ -36,11 +37,17 @@ const routes = [
     path: "/login",
     name: Login,
     component: Login,
+    meta: { isPublic: true },
   },
 ];
 
 const router = new VueRouter({
   routes,
 });
-
+router.beforeEach((to, from, next) => {
+  if (!to.meta.isPublic && !sessionStorage.token) {
+    return next("/login");
+  }
+  next();
+});
 export default router;
