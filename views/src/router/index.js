@@ -19,14 +19,14 @@ const routes = [
     name: "Admin",
     component: Admin,
     children: [
-      { path: "/sayings/add", name: "Add", component: Add },
+      { path: "/admin/sayings/add", name: "Add", component: Add },
       {
-        path: "/sayings/list",
+        path: "/admin/sayings/list",
         name: "List",
         component: List,
       },
       {
-        path: "/sayings/add/:id",
+        path: "/admin/sayings/add/:id",
         component: Add,
         props: true,
       },

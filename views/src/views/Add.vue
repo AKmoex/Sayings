@@ -39,14 +39,15 @@ export default {
   },
   methods: {
     async add() {
-      let res;
       if (this.id) {
-        res = await this.$http.post(`/rest/add/${this.id}`, this.model);
-        console.log(res);
+        await this.$http.post(`/rest/add/${this.id}`, this.model);
       } else {
-        res = await this.$http.post("/rest/add", this.model);
-        console.log(res);
+        await this.$http.post("/rest/add", this.model);
       }
+      this.$message({
+        type: "success",
+        message: this.id ? "更新成功" : "添加成功"
+      });
     },
     async fetch() {
       const res = await this.$http.get(`/rest/add/${this.id}`);

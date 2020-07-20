@@ -21,7 +21,7 @@
         <template slot-scope="scope">
           <el-button
             type="primary"
-            @click="$router.push('/sayings/add/' + scope.row._id)"
+            @click="$router.push('/admin/sayings/add/' + scope.row._id)"
             size="small"
             >修改</el-button
           >
@@ -68,9 +68,21 @@ export default {
     },
 
     async deleteSaying(val) {
-      const res = await this.$http.delete(`/rest/delete/${val._id}`);
-      console.log(res);
+      this.$confirm("确定删除吗？", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      }).then(async () => {
+        await this.$http.delete(`/rest/delete/${val._id}`);
+        this.$message({
+          type: "success",
+          message: "删除成功!"
+        });
+        this.fecthSayings();
+      });
+      //.catch(() => {});
     },
+
     handleCurrentChange(page) {
       this.cur_page = page;
     },

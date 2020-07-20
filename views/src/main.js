@@ -19,13 +19,20 @@ http.interceptors.request.use(
     return Promise.reject(error);
   }
 );
-axios.interceptors.response.use(
+http.interceptors.response.use(
   (res) => {
     return res;
   },
   (err) => {
-    console.log(err);
-    console.log(err.data);
+    if (err.response.data.message) {
+      Vue.prototype.$message({
+        type: "error",
+        message: err.response.data.message,
+      });
+    }
+    if (err.response.status == 401) {
+      router.push("/login");
+    }
     return Promise.reject(err);
   }
 );

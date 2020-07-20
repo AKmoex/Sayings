@@ -17,6 +17,7 @@ import {
   TableColumn,
   Pagination,
   Card,
+  MessageBox,
 } from "element-ui";
 import { Message } from "element-ui";
 Vue.use(Container);
@@ -37,3 +38,4 @@ Vue.use(TableColumn);
 Vue.use(Pagination);
 Vue.use(Card);
 Vue.prototype.$message = Message;
+Vue.prototype.$confirm = MessageBox.confirm;

@@ -12,28 +12,29 @@ module.exports = (app) => {
 
   const auth = require("../../middleware/auth.js");
 
-  router.get("/list", async (req, res) => {
+  router.get("/list", async (req, res, next) => {
     const sayings = await Saying.find();
     res.send(sayings);
   });
   router.get("/add/:id", async (req, res) => {
     console.log(req.params.id);
     const saying = await Saying.findById(req.params.id);
-
     res.send(saying);
   });
   router.post("/add", async (req, res) => {
-    const model = await Saying.create(req.body);
-    res.send(model);
+    await Saying.create(req.body);
+    res.send({
+      message: "success",
+    });
   });
   router.post("/add/:id", async (req, res) => {
-    const model = await Saying.findByIdAndUpdate(req.params.id, req.body);
-    res.send(model);
+    await Saying.findByIdAndUpdate(req.params.id, req.body);
+    res.send({
+      message: "success",
+    });
   });
   router.delete("/delete/:id", async (req, res) => {
-    console.log(req.params.id);
     await Saying.findByIdAndDelete(req.params.id);
-
     res.send({
       message: "success",
     });
@@ -59,8 +60,6 @@ module.exports = (app) => {
   });
 
   app.use(async (err, req, res, next) => {
-    console.log("你好世界");
-    console.log(err);
     res.status(err.statusCode || 500).send({
       message: err.message,
     });
