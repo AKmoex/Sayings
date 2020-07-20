@@ -16,7 +16,9 @@ import {
   Table,
   TableColumn,
   Pagination,
+  Card,
 } from "element-ui";
+import { Message } from "element-ui";
 Vue.use(Container);
 Vue.use(Aside);
 Vue.use(Menu);
@@ -33,3 +35,5 @@ Vue.use(DatePicker);
 Vue.use(Table);
 Vue.use(TableColumn);
 Vue.use(Pagination);
+Vue.use(Card);
+Vue.prototype.$message = Message;

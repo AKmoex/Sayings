@@ -4,6 +4,7 @@ import Home from "../views/Home.vue";
 import Admin from "../views/Admin.vue";
 import List from "../views/List.vue";
 import Add from "../views/Add.vue";
+import Login from "../views/Login.vue";
 
 Vue.use(VueRouter);
 
@@ -30,6 +31,11 @@ const routes = [
         props: true,
       },
     ],
+  },
+  {
+    path: "/login",
+    name: Login,
+    component: Login,
   },
 ];
 

@@ -63,12 +63,12 @@ export default {
 
   methods: {
     async fecthSayings() {
-      const res = await this.$http.get("/list");
+      const res = await this.$http.get("/rest/list");
       this.sayings = res.data;
     },
 
     async deleteSaying(val) {
-      const res = await this.$http.delete(`/delete/${val._id}`);
+      const res = await this.$http.delete(`/rest/delete/${val._id}`);
       console.log(res);
     },
     handleCurrentChange(page) {

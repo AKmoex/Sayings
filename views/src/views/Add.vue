@@ -41,15 +41,15 @@ export default {
     async add() {
       let res;
       if (this.id) {
-        res = await this.$http.post(`/add/${this.id}`, this.model);
+        res = await this.$http.post(`/rest/add/${this.id}`, this.model);
         console.log(res);
       } else {
-        res = await this.$http.post("/add", this.model);
+        res = await this.$http.post("/rest/add", this.model);
         console.log(res);
       }
     },
     async fetch() {
-      const res = await this.$http.get(`/add/${this.id}`);
+      const res = await this.$http.get(`/rest/add/${this.id}`);
       this.model.saying = res.data.saying;
     }
   },
