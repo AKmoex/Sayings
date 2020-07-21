@@ -1,6 +1,6 @@
-h<template>
+<template>
   <div class="home">
-    om
+    <!--样式参考自 skk.moe-->
     <div class="info">
       <img
         src="https://i.loli.net/2020/07/21/AHNdSXEf68s5Coi.jpg"
@@ -45,12 +45,7 @@ body {
   color: #7c8891;
   float: left;
 }
-.avatar_wall {
-  width: 120px;
-  height: 120px;
-  background: purple;
-  margin: 35px auto;
-}
+
 .avatar {
   widows: 100px;
   height: 100px;
