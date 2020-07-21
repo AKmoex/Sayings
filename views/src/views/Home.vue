@@ -12,7 +12,7 @@
       <div class="left">
         『
       </div>
-      <div class="center">遥知不是雪，为有暗香来</div>
+      <div class="center">{{ saying }}</div>
       <div class="right">』</div>
     </div>
   </div>
@@ -70,11 +70,14 @@ body {
 <script>
 export default {
   data() {
-    return {};
+    return {
+      saying: ""
+    };
   },
   methods: {
     async fetch() {
-      await this.$http.get("/saying");
+      const res = await this.$http.get("/saying");
+      this.saying = res.data.saying;
     }
   },
   created() {
