@@ -58,6 +58,10 @@ module.exports = (app) => {
 
     res.send(token);
   });
+  app.get("/api/web/saying", async (req, res) => {
+    const sayings = await Saying.aggregate([{ $sample: { size: 1 } }]);
+    res.send(sayings[0]);
+  });
 
   app.use(async (err, req, res, next) => {
     res.status(err.statusCode || 500).send({
